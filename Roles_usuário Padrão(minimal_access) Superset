@@ -1,0 +1,33 @@
+Sua configuração do novo role "Usuário Padrão (minimal_access)" com as permissões listadas é bastante restritiva e adequada para um perfil de usuário que apenas consome dashboards e gráficos, sem acesso a funcionalidades administrativas ou de edição. Aqui está uma análise baseada nas permissões fornecidas e no que está documentado nas fontes oficiais:
+Análise das Permissões
+can read on Chart
+Permite visualizar gráficos (slices) aos quais o usuário tem acesso.
+can read on Dashboard
+Permite visualizar dashboards disponíveis para o usuário.
+can this form post/get on ResetPasswordView
+Permite que o usuário acesse e utilize o formulário de redefinição de senha.
+can userinfo on UserDBModelView
+Permite visualizar informações básicas do próprio usuário.
+can list on UserDBModelView
+Permite listar usuários (geralmente restrito, mas pode ser necessário para algumas telas).
+resetmypassword on UserDBModelView
+Permite redefinir a própria senha.
+can read on DashboardFilterStateRestApi
+Permite ler o estado dos filtros aplicados em dashboards.
+can csv on Superset
+Permite exportar dados em formato CSV.
+can recent activity on Superset
+Permite visualizar a página de atividades recentes.
+Considerações
+Acesso restrito:
+Esse conjunto de permissões é ainda mais restrito que o perfil Gamma padrão, pois não inclui acesso a datasets ou bancos de dados. Isso significa que o usuário só conseguirá visualizar dashboards e gráficos para os quais já tenha acesso indireto via permissões de dataset concedidas por outros roles, conforme a documentação oficial Security Configurations.
+Limitações:
+Usuários com esse role não poderão criar, editar ou excluir dashboards, gráficos ou datasets, nem acessar funcionalidades administrativas.
+Dependendo da configuração do Superset e das permissões de datasets, pode ser necessário adicionar permissões de acesso a datasets específicos para que o usuário veja conteúdo nos dashboards Restricting Access to a Subset of Data Sources.
+Reset de senha:
+As permissões relacionadas ao ResetPasswordView e UserDBModelView garantem que o usuário possa gerenciar sua própria senha, o que é uma boa prática para roles básicos.
+Exportação CSV:
+Permitir exportação CSV pode ser útil para usuários que precisam consumir dados fora do Superset, mas ainda assim é uma permissão de leitura.
+Resumo
+O role "Usuário Padrão (minimal_access)" está bem alinhado para um perfil de consumo básico, com foco em visualização e autoatendimento mínimo. Se precisar que esses usuários vejam dashboards baseados em datasets específicos, lembre-se de conceder também as permissões de acesso aos datasets correspondentes, pois o acesso a dashboards depende dessas permissões de dados subjacentes Security Configurations.
+Se precisar de mais granularidade ou encontrar limitações práticas, pode ser necessário ajustar as permissões conforme o uso real do sistema.
